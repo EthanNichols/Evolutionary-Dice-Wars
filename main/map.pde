@@ -57,9 +57,9 @@ class map {
     //Test if a player owns the tile
     //Set the color of the tile to the player
     if (playerColor != 255) {
-      tint(playerColor, 75);
+      tint(playerColor, 150);
     } else {
-      tint(playerColor, 255);
+      tint(255, 255);
     }
     
     if (selected) {
@@ -80,8 +80,8 @@ void createMap() {
   int tileNum = 0;
   
   //For loops to set the grid X, Y position
-  for (int x=0; x < 20; x++) {
-    for (int y=0; y < 20; y++) {
+  for (int x=0; x < 10; x++) {
+    for (int y=0; y < 10; y++) {
       
       //Increase the amount of tiles that have been made
       tileNum++;

@@ -154,6 +154,9 @@ void moveDice(int startPos, int endPos) {
           die[i].posX = x;
           die[i].posY = y;
           die[i].moved = true;
+          
+          updateTileAmount();
+          break;
         }
       }
     }
@@ -271,7 +274,8 @@ void fillUnoccupiedTiles() {
               }
             }
           }
-        } else if (player[p].id == tile[t].player && !tile[t].occupied) {
+        }
+        if (player[p].id == tile[t].player && !tile[t].occupied) {
       
           //Local X and Y variables for the center of the tile
           int x = tile[t].posX + tile[t].posXOffset + tile[t].tileImage.width / 2;

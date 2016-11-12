@@ -94,7 +94,7 @@ void placePlayers() {
     for (int t=0; t<tile.length; t++) {
       
       //Test if the player starting place is equal to the player ID 
-      if (player[p].startID == tile[t].id) {
+      if (player[p].startID == tile[t].id && !tile[t].occupied) {
         
         //Set the tile to be occupied by the player
         //Set that the tile is occupied
@@ -111,6 +111,8 @@ void placePlayers() {
         //Increase the amount of tiles that the player owns
         createDie(x, y, 4, player[p].id, tile[t].id);
         player[p].tiles++;
+      } else if (player[p].startID == tile[t].id && tile[t].occupied){
+        player[p].startID++;
       }
     }
   }
@@ -129,4 +131,15 @@ void drawPlayers() {
   
   //Create the "End Turn" button at the end of all the information boxes
   interfaceNextTurn(infoWidth, player.length);
+}
+
+void updateTileAmount() {
+  for (int p=0; p<player.length; p++) {
+    player[p].tiles = 0;
+    for (int t=0; t< tile.length; t++) {
+      if (tile[t].player == player[p].id) {
+        player[p].tiles++;
+      }
+    }
+  }
 }

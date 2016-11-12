@@ -29,16 +29,12 @@ void selectTile() {
     mouseY <= tile[i].posY + tile[i].posYOffset + tile[i].tileImage.height - 35) {
       selectionID = tile[i].id;
       
-      println("center");
-      
     //Test the upper Left hand corner of the hexagon
     } else if (mouseX > tile[i].posX + tile[i].posXOffset &&
     mouseX < tile[i].posX + tile[i].posXOffset + tile[i].tileImage.width / 2 &&
     mouseY > tile[i].posY + tile[i].posYOffset + 35 - floor((mouseX - (tile[i].posX + tile[i].posXOffset)) / 2)  &&
     mouseY < tile[i].posY + tile[i].posYOffset + 35) {
       selectionID = tile[i].id;
-      
-      println("upper left");
       
     //Test the upper right hand corner of the hexagon
     } else if (mouseX > tile[i].posX + tile[i].posXOffset + tile[i].tileImage.width / 2 &&
@@ -47,8 +43,6 @@ void selectTile() {
     mouseY < tile[i].posY + tile[i].posYOffset + 35) {
       selectionID = tile[i].id;
       
-      println("upper right");
-      
     //Test the lower Left hand corner of the hexagon
     } else if (mouseX > tile[i].posX + tile[i].posXOffset &&
     mouseX < tile[i].posX + tile[i].posXOffset + tile[i].tileImage.width / 2 &&
@@ -56,16 +50,12 @@ void selectTile() {
     mouseY < tile[i].posY + tile[i].posYOffset + tile[i].tileImage.height - 35 + floor((mouseX - (tile[i].posX + tile[i].posXOffset)) / 2)) {
       selectionID = tile[i].id;
       
-      println("lower left");
-      
     //Test the lower right hand corner of the hexagon
     } else if (mouseX > tile[i].posX + tile[i].posXOffset + tile[i].tileImage.width / 2 &&
     mouseX < tile[i].posX + tile[i].posXOffset + tile[i].tileImage.width &&
     mouseY > tile[i].posY + tile[i].posYOffset + tile[i].tileImage.height - 35 &&
     mouseY < tile[i].posY + tile[i].posYOffset + tile[i].tileImage.height - floor((mouseX - ((tile[i].posX + tile[i].posXOffset) + tile[i].tileImage.width / 2)) / 2)) {
       selectionID = tile[i].id;
-      
-      println("lower right");
     }
   }
   
