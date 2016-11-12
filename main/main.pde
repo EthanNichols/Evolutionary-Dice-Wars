@@ -31,5 +31,6 @@ void draw() {
 }
 
 void mousePressed() {
+  selectTile();
   nextTurn();
 }

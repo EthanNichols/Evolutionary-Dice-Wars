@@ -51,7 +51,11 @@ class dice {
     
     //Tint the image in respect to the player who owns it
     //Draw the die on the map
-    tint(player[playerID].playerColor);
+    for (int i=0; i<player.length; i++) {
+      if (playerID == player[i].id) {
+        tint(player[i].playerColor);
+      }
+    }
     image(dieImage, posX, posY);
   }
 }

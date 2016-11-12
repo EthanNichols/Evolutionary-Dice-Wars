@@ -99,7 +99,7 @@ void placePlayers() {
         //Set the tile to be occupied by the player
         //Set that the tile is occupied
         //Set the color of the tile to the player color
-        tile[t].player = p;
+        tile[t].player = player[p].id;
         tile[t].occupied = true;
         tile[t].playerColor = player[p].playerColor;
         
@@ -109,7 +109,7 @@ void placePlayers() {
         
         //Create a dice at that location and with the player's color
         //Increase the amount of tiles that the player owns
-        createDie(x, y, 6, p);
+        createDie(x, y, 6, player[p].id);
         player[p].tiles++;
       }
     }

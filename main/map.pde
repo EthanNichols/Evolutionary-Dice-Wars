@@ -19,9 +19,12 @@ class map {
   //What type of tile is being drawn
   //The tile image that will be drawn
   //Whether the tile is occupied by a dice or not
+  //Whether the tile is selected or not
+  //The color of the tile, if it is occupied
   String tileType;
   PImage tileImage;
   boolean occupied;
+  boolean selected;
   color playerColor;
   
   //Load the tile images
@@ -57,6 +60,10 @@ class map {
       tint(playerColor, 75);
     } else {
       tint(playerColor, 255);
+    }
+    
+    if (selected) {
+      tint(playerColor, 25);
     }
     
     //Draw the tile
