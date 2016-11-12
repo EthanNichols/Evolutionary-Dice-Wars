@@ -2,59 +2,80 @@
 map[] tile = {};
 
 class map {
-  
-  //The id for the tile
+  //The id of the tile and the player it belongs to
   int id;
-  
-  //The player that the tile belongs to
   int player;
   
-  //Position of the tile on the map's grid
+  //The actual X and Y position
+  //The grid X and Y position
+  //The offset X and Y for the hexagon map
   int posX;
   int posY;
-  
-  //Position offsets for the different layers of the map's grid
+  int gridX;
+  int gridY;
   int posXOffset;
   int posYOffset;
   
-  //The type of ground that the tile represents
+  //What type of tile is being drawn
+  //The tile image that will be drawn
+  //Whether the tile is occupied by a dice or not
   String tileType;
-  PImage tileImage = loadImage("images/blankHexagon.png");
-  
-  //Variable to see if there is a dice on the tile
+  PImage tileImage;
   boolean occupied;
+  color playerColor;
   
+  //Load the tile images
+  PImage blank = loadImage("images/blankHexagon.png");
   
-  map(int x, int y) {
+  map(int x, int y, int tileNum) {
     
     //Set the id of the tile
-    id = x + y;
+    //Set the tile image that will be drawn
+    id = tileNum;
+    tileImage = blank;
     
-    //Set the position of the die relative to the grid location
+    //Set the actual X and Y position of the tile
+    //Set the grid X and Y position of the tile
+    //Set the offset X and Y for the hexagon map
     posX = x * (tileImage.width - 1);
     posY = y * (tileImage.height - 1);
-    
-    //Set the offset of the hexagons to fit snuggly
+    gridX = x;
+    gridY = y;
     posXOffset = (y % 2) * floor(tileImage.width / 2);
     posYOffset = -y * 33;
-    
-    //Set that the tile isn't occupied
+  
+    //Set that the tile isn't occupied by a die
+    //Set the color of the tile to have its' original color
     occupied = false;
+    playerColor = 255;
   }
   
   void display() {
-    //Draw the tile on the map
+    //Reset the tint
+    //Draw the tile
+    if (playerColor != 255) {
+      tint(playerColor, 150);
+    } else {
+      tint(playerColor, 255);
+    }
     image(tileImage, posX + posXOffset, posY + posYOffset);
   }
 }
 
 void createMap() {
   
+  //Local variable to know how many dice have been created
+  int tileNum = 0;
+  
   //For loops to set the grid X, Y position
   for (int x=0; x < 20; x++) {
     for (int y=0; y < 20; y++) {
+      
+      //Increase the amount of tiles that have been made
+      tileNum++;
+      
       //Add the tile into the map array, and set the tile information
-      tile = (map[])append(tile, new map(x, y)); 
+      tile = (map[])append(tile, new map(x, y, tileNum)); 
     }
   }
 }
