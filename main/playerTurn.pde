@@ -14,29 +14,6 @@ void randomPlayerTurn() {
   }
 }
 
-void nextTurn() {
-  
-  //Get information about the players
-  for (int i=0; i<player.length; i++) {
-    
-    //Test for the player that is taking their turn
-    if(player[i].playerTurn) {
-      
-      //Set that players turn to false
-      player[i].playerTurn = false;
-      
-      //Make sure that the next player is in the array bounds
-      if (i + 1 >= player.length) {
-        i -= player.length;
-      }
-      
-      //Set the next player's turn to be true
-      player[i + 1].playerTurn = true;
-      break;
-    }
-  }
-}
-
 void selectTile() {
   
   //Local variable to know which tile is selected
@@ -46,11 +23,13 @@ void selectTile() {
   for (int i=0; i<tile.length; i++) {
     
     //Test the center area of the hexagon
-    if (mouseX > tile[i].posX + tile[i].posXOffset && 
-    mouseX < tile[i].posX + tile[i].posXOffset + tile[i].tileImage.width - 1 &&
-    mouseY > tile[i].posY + tile[i].posYOffset + 35 &&
-    mouseY < tile[i].posY + tile[i].posYOffset + tile[i].tileImage.height - 35) {
+    if (mouseX >= tile[i].posX + tile[i].posXOffset && 
+    mouseX <= tile[i].posX + tile[i].posXOffset + tile[i].tileImage.width - 1 &&
+    mouseY >= tile[i].posY + tile[i].posYOffset + 35 &&
+    mouseY <= tile[i].posY + tile[i].posYOffset + tile[i].tileImage.height - 35) {
       selectionID = tile[i].id;
+      
+      println("center");
       
     //Test the upper Left hand corner of the hexagon
     } else if (mouseX > tile[i].posX + tile[i].posXOffset &&
@@ -59,12 +38,16 @@ void selectTile() {
     mouseY < tile[i].posY + tile[i].posYOffset + 35) {
       selectionID = tile[i].id;
       
+      println("upper left");
+      
     //Test the upper right hand corner of the hexagon
     } else if (mouseX > tile[i].posX + tile[i].posXOffset + tile[i].tileImage.width / 2 &&
     mouseX < tile[i].posX + tile[i].posXOffset + tile[i].tileImage.width &&
     mouseY > tile[i].posY + tile[i].posYOffset + floor((mouseX - ((tile[i].posX + tile[i].posXOffset) + tile[i].tileImage.width / 2)) / 2)  &&
     mouseY < tile[i].posY + tile[i].posYOffset + 35) {
       selectionID = tile[i].id;
+      
+      println("upper right");
       
     //Test the lower Left hand corner of the hexagon
     } else if (mouseX > tile[i].posX + tile[i].posXOffset &&
@@ -73,17 +56,22 @@ void selectTile() {
     mouseY < tile[i].posY + tile[i].posYOffset + tile[i].tileImage.height - 35 + floor((mouseX - (tile[i].posX + tile[i].posXOffset)) / 2)) {
       selectionID = tile[i].id;
       
+      println("lower left");
+      
     //Test the lower right hand corner of the hexagon
     } else if (mouseX > tile[i].posX + tile[i].posXOffset + tile[i].tileImage.width / 2 &&
     mouseX < tile[i].posX + tile[i].posXOffset + tile[i].tileImage.width &&
     mouseY > tile[i].posY + tile[i].posYOffset + tile[i].tileImage.height - 35 &&
     mouseY < tile[i].posY + tile[i].posYOffset + tile[i].tileImage.height - floor((mouseX - ((tile[i].posX + tile[i].posXOffset) + tile[i].tileImage.width / 2)) / 2)) {
       selectionID = tile[i].id;
+      
+      println("lower right");
     }
   }
   
   //Local varible to see which function to call
   boolean secondTileSelect = false;
+  int selectedTile = 0;
   
   //Get information about the tiles
   for (int i=0; i<tile.length; i++) {
@@ -92,14 +80,17 @@ void selectTile() {
     //Set the local variable to true to call the second function
     if (tile[i].selected) {
       secondTileSelect = true;
+      selectedTile = tile[i].id;
       break;
     }
   }
   
   //Test to see which function should be called
+  //Send which tile has been selected to respective function
   if (!secondTileSelect) {
-    //Send which tile has been selected to function
     selectPlayerTile(selectionID);
+  } else {
+    secondPlayerSelection(selectedTile, selectionID);
   }
 }
 
@@ -121,5 +112,49 @@ void selectPlayerTile(int selectionID) {
         }
       }
     }
+  }
+}
+
+void secondPlayerSelection(int selectedTile, int selectionID) {
+  
+  //Test if the dice can move
+  boolean move = false;
+  
+  //Get information about the tiles
+  for (int i=0; i<tile.length; i++) {
+    
+    //Test for the tiles that has the first selection tile id
+    if (selectionID == tile[i].id) {
+      
+      //Test for tiles around the first selected tile
+      //Set that tile to be selected
+      //Set that the dice can move
+      if (tile[i].id == selectedTile + 1) {tile[i].selected = true; move = true;}
+      if (tile[i].id == selectedTile - 1) {tile[i].selected = true; move = true;}
+      if (tile[i].id == selectedTile - 19) {tile[i].selected = true; move = true;}
+      if (tile[i].id == selectedTile - 20) {tile[i].selected = true; move = true;}
+      if (tile[i].id == selectedTile - 21) {tile[i].selected = true; move = true;}
+      if (tile[i].id == selectedTile + 19) {tile[i].selected = true; move = true;}
+      if (tile[i].id == selectedTile + 20) {tile[i].selected = true; move = true;}
+      if (tile[i].id == selectedTile + 21) {tile[i].selected = true; move = true;}
+    }
+  }
+  
+  //Test if the ddice can move
+  //Move the dice
+  if (move == true) {
+    moveDice(selectedTile, selectionID);
+  }
+  
+  //Reset the selected tiles so that no tiles are selected
+  resetSelection();
+}
+
+void resetSelection() {
+  
+  //Get information about the tiles
+  //Set all of the tiles to not be select
+  for(int i=0; i<tile.length; i++) {
+    tile[i].selected = false;
   }
 }

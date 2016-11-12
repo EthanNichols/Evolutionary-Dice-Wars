@@ -109,7 +109,7 @@ void placePlayers() {
         
         //Create a dice at that location and with the player's color
         //Increase the amount of tiles that the player owns
-        createDie(x, y, 6, player[p].id);
+        createDie(x, y, 4, player[p].id, tile[t].id);
         player[p].tiles++;
       }
     }

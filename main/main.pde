@@ -31,6 +31,12 @@ void draw() {
 }
 
 void mousePressed() {
+  
+  //Execute functions when the mouse is pressed
   selectTile();
-  nextTurn();
+  endTurn();
+  
+  if (mouseButton == RIGHT) {
+    nextTurn();
+  }
 }

@@ -10,8 +10,12 @@ PImage d20;
 dice[] die = {};
 
 class dice {
-  //The color the dice should be for the player
+  //The player that the dice belongs to
+  //The tile that the dice belongs to
+  //Whether the dice has moved this turn or not
   int playerID;
+  int tileID;
+  boolean moved;
   
   //Position of the die
   //The grid location of the dice compared to the map
@@ -25,11 +29,25 @@ class dice {
   int sides;
   PImage dieImage;
   
-  dice(int x, int y, int sidesOfDie, int player) {
+  dice(int x, int y, int sidesOfDie, int player, int tile) {
     
-    //Test how many sides are on the dice
-    //Set the dice image in respect to the amount of side
-    switch(sidesOfDie) {
+    //Set which player the dice belongs to
+    //Set which tile the dice belongs to
+    //Set that the dice hasn't moved
+    playerID = player;
+    tileID = tile;
+    moved = false;
+    
+    //Set the position of the dice on the map
+    posX = x;
+    posY = y;
+    
+    //Set how many sides the dice has
+    sides = sidesOfDie;
+  }
+  
+  void setDieImage() {
+    switch(sides) {
       case(4):  dieImage = d4;  break;
       case(6):  dieImage = d6;  break;
       case(8):  dieImage = d8;  break;
@@ -37,17 +55,12 @@ class dice {
       case(12):  dieImage = d12;  break;
       case(20):  dieImage = d20;  break;
     }
-    
-    //Set which player the dice belongs to
-    playerID = player;
-    posX = x - dieImage.width / 2;
-    posY = y - dieImage.height / 2;
-    
-    //Set how many sides the dice has
-    sides = sidesOfDie;
   }
   
   void display() {
+    
+    //Set the image of the respective die
+    setDieImage();
     
     //Tint the image in respect to the player who owns it
     //Draw the die on the map
@@ -56,7 +69,7 @@ class dice {
         tint(player[i].playerColor);
       }
     }
-    image(dieImage, posX, posY);
+    image(dieImage, posX - dieImage.width / 2, posY - dieImage.height / 2);
   }
 }
 
@@ -70,10 +83,10 @@ void loadDiceImages() {
   d20 = loadImage("images/d20.png");
 }
 
-void createDie(int x, int y, int sides, int player) {
+void createDie(int x, int y, int sides, int player, int tile) {
   
   //Create a die with respect to the parameters
-  die = (dice[])append(die, new dice(x, y, sides, player)); 
+  die = (dice[])append(die, new dice(x, y, sides, player, tile)); 
 }
 
 void drawDice() {
@@ -82,5 +95,191 @@ void drawDice() {
   //Draw the die
   for (int i=0; i<die.length; i++) {
     die[i].display();
+  }
+}
+
+void moveDice(int startPos, int endPos) {
+  
+  //Get inforamtion about the dice
+  for (int i=0; i<die.length; i++) {
+    
+    //Test for a dice in the starting position
+    //Test if the dice has moved
+    if (die[i].tileID == startPos && !die[i].moved) {
+      
+      //Local X and Y positions for the new dice location
+      int x = 0;
+      int y = 0;
+      
+      boolean attack = true;
+      
+      //Get information about the tiles
+      for (int t=0; t<tile.length; t++) {
+        
+        //Test for the tile that the dice started in
+        //Set that there is no occupying dice in the tile
+        if (tile[t].id == startPos) {
+          tile[t].occupied = false;   
+        }
+        
+        //Test for the tile that the dice is moving to
+        if (tile[t].id == endPos && tile[t].occupied) {
+          attack = true;
+          diceAttack(startPos, endPos);
+          break;
+        }
+        
+        if (tile[t].id == endPos && !tile[t].occupied) {
+          
+          //Set the new X and Y locations for the dice
+          x = tile[t].posX + tile[t].posXOffset + tile[t].tileImage.width / 2;
+          y = tile[t].posY  + tile[t].posYOffset + tile[t].tileImage.height / 2;
+          
+          //Set the player that the tile belongs to
+          //Set that the tile is occupied
+          //Set the player color of the tile
+          tile[t].player = die[i].playerID;
+          tile[t].occupied = true;
+          tile[t].playerColor = player[die[i].playerID - 1].playerColor;
+          
+          attack = false;
+          
+        }
+        
+        if (!attack) {
+          //Move the die to its new location
+          //Set the new X and Y location for the die
+          //Set that the die has been moved
+          die[i].tileID = endPos;
+          die[i].posX = x;
+          die[i].posY = y;
+          die[i].moved = true;
+        }
+      }
+    }
+  }
+}
+
+void diceAttack(int startPos, int endPos) {
+  
+  int playerTile1 = 0;
+  int playerTile2 = 0;
+  
+  for (int t=0; t<tile.length; t++) {
+    if (tile[t].id == startPos) {
+      playerTile1 = tile[t].player;
+    }
+    if (tile[t].id == endPos) {
+      playerTile2 = tile[t].player;
+    }
+  }
+  
+  int die1 = 0;
+  int die2 = 0;
+  
+  if (playerTile1 != playerTile2) {
+    for (int d=0; d<die.length; d++) {
+      
+      if (die[d].tileID == startPos) {
+        die1 = die[d].sides;
+      }
+      if (die[d].tileID == endPos) {
+        die2 = die[d].sides;
+      }
+    }
+  }
+  
+  int dieRoll1 = floor(random(die1) + 1);
+  int dieRoll2 = floor(random(die2) + 1);
+  boolean attackerWin = false;
+  
+  if (dieRoll1 > dieRoll2) {
+    attackerWin = true;
+  }
+  
+  for (int d=0; d<die.length; d++) {
+    if (attackerWin) {
+      if (die[d].tileID == endPos) {
+        die[d].tileID = -100;
+        die[d].posX = -100;
+        die[d].posY = -100;
+        die[d].moved = true;
+        
+        for (int t=0; t<tile.length; t++) {
+          if (tile[t].id == endPos || tile[t].id == startPos) {
+            tile[t].occupied = false;
+          }
+        }
+        
+        moveDice(startPos, endPos);
+        break;
+      }
+    } else {
+      if (die[d].tileID == startPos) {
+        die[d].tileID = -100;
+        die[d].posX = -100;
+        die[d].posY = -100;
+        die[d].moved = true;
+        
+        for (int t=0; t<tile.length; t++) {
+          if (tile[t].id == startPos) {
+            tile[t].occupied = false;
+            break;
+          }
+        }
+      }
+    }
+  }
+}
+
+void resetDiceMovement() {
+  
+  //Get information about the player
+  for (int p=0; p<player.length; p++) {
+    
+    //Test for the player who's taking their turn
+    //Get information about the die
+    if (player[p].playerTurn) {
+      for (int d=0; d<die.length; d++) {
+        
+        //Test if the player id matches the die id
+        //Set that the dice hasn't moved
+        if (player[p].id == die[d].playerID) {
+          die[d].moved = false;
+        }
+      }
+    }
+  }
+}
+
+void fillUnoccupiedTiles() {
+  
+  //Get inforamtion about the players
+  for (int p=0; p<player.length; p++) {
+    
+    //Test for the player who's taking their turn
+    if (player[p].playerTurn) {
+      for (int t=0; t<tile.length; t++) {
+        
+        if (player[p].id == tile[t].player && tile[t].occupied) {
+          for (int d=0; d<die.length; d++) {
+            if (player[p].id == die[d].playerID) {
+              die[d].sides += 2;
+              
+              if (die[d].sides > 12) {
+                die[d].sides = 20;
+              }
+            }
+          }
+        } else if (player[p].id == tile[t].player && !tile[t].occupied) {
+      
+          //Local X and Y variables for the center of the tile
+          int x = tile[t].posX + tile[t].posXOffset + tile[t].tileImage.width / 2;
+          int y = tile[t].posY  + tile[t].posYOffset + tile[t].tileImage.height / 2;
+        
+          createDie(x, y, 4, player[p].id, tile[t].id);
+        }
+      }
+    }
   }
 }
