@@ -17,3 +17,8 @@ hexagonal map tiles		(Different ground types give different buffs)
 	dirt
 	forest
 
+Territory owned will allow that many actions to happen on your turn
+
+
+Local multiplayer
+Computer Artificial Intelligence

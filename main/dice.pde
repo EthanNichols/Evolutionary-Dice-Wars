@@ -1,4 +1,12 @@
 
+//Load all of the dice images
+PImage d4;
+PImage d6;
+PImage d8;
+PImage d10;
+PImage d12;
+PImage d20;
+  
 dice[] die = {};
 
 class dice {
@@ -17,26 +25,17 @@ class dice {
   int sides;
   PImage dieImage;
   
-  //Load all of the dice images
-  PImage d4 = loadImage("images/d6.png");
-  PImage d6 = loadImage("images/d6.png");
-  PImage d8 = loadImage("images/d6.png");
-  PImage d10 = loadImage("images/d6.png");
-  PImage d12 = loadImage("images/d6.png");
-  PImage d20 = loadImage("images/d6.png");
-  
-  
   dice(int x, int y, int sidesOfDie, int player) {
     
     //Test how many sides are on the dice
     //Set the dice image in respect to the amount of side
     switch(sidesOfDie) {
-      case 4:  dieImage = d4;
-      case 6:  dieImage = d6;
-      case 8:  dieImage = d8;
-      case 10:  dieImage = d10;
-      case 12:  dieImage = d12;
-      case 20:  dieImage = d20;
+      case(4):  dieImage = d4;  break;
+      case(6):  dieImage = d6;  break;
+      case(8):  dieImage = d8;  break;
+      case(10):  dieImage = d10;  break;
+      case(12):  dieImage = d12;  break;
+      case(20):  dieImage = d20;  break;
     }
     
     //Set which player the dice belongs to
@@ -55,6 +54,16 @@ class dice {
     tint(player[playerID].playerColor);
     image(dieImage, posX, posY);
   }
+}
+
+void loadDiceImages() {
+  //Load all of the dice images
+  d4 = loadImage("images/d4.png");
+  d6 = loadImage("images/d6.png");
+  d8 = loadImage("images/d8.png");
+  d10 = loadImage("images/d10.png");
+  d12 = loadImage("images/d12.png");
+  d20 = loadImage("images/d20.png");
 }
 
 void createDie(int x, int y, int sides, int player) {
