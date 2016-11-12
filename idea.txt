@@ -1,0 +1,19 @@
+title:
+Dice war?
+
+6 different dice		(Might need to be different dice values)
+	d4
+	d6
+	d8
+	d10
+	d12
+	d20
+
+hexagonal map tiles		(Different ground types give different buffs)
+
+	(Different ground types will be added with time)
+	grass
+	water
+	dirt
+	forest
+
