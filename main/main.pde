@@ -6,6 +6,7 @@ void setup() {
   //Set the color mode
   colorMode(HSB, 255);
   
+  //Load all of the dice images
   loadDiceImages();
   
   //Create the map that will be played on
@@ -22,7 +23,9 @@ void draw() {
   //Draw the dice on the map
   drawMap();
   drawDice();
-
+  
+  //Draw the interface
+  //Draw the player information on the interface
   drawInterface();
   drawPlayers();
 }

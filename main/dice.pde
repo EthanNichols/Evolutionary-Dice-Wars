@@ -1,5 +1,5 @@
 
-//Load all of the dice images
+//Set all of the dice image names
 PImage d4;
 PImage d6;
 PImage d8;

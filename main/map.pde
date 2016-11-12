@@ -51,13 +51,15 @@ class map {
   }
   
   void display() {
-    //Reset the tint
-    //Draw the tile
+    //Test if a player owns the tile
+    //Set the color of the tile to the player
     if (playerColor != 255) {
-      tint(playerColor, 150);
+      tint(playerColor, 75);
     } else {
       tint(playerColor, 255);
     }
+    
+    //Draw the tile
     image(tileImage, posX + posXOffset, posY + posYOffset);
   }
 }
