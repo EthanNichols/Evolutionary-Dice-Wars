@@ -94,7 +94,7 @@ void placePlayers() {
     for (int t=0; t<tile.length; t++) {
       
       //Test if the player starting place is equal to the player ID 
-      if (player[p].startID == tile[t].id && !tile[t].occupied) {
+      if (player[p].startID == tile[t].id) {
         
         //Set the tile to be occupied by the player
         //Set that the tile is occupied
@@ -111,8 +111,6 @@ void placePlayers() {
         //Increase the amount of tiles that the player owns
         createDie(x, y, 4, player[p].id, tile[t].id);
         player[p].tiles++;
-      } else if (player[p].startID == tile[t].id && tile[t].occupied){
-        player[p].startID++;
       }
     }
   }

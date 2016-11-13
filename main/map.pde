@@ -1,4 +1,6 @@
 
+int mapWidth = 5;
+int mapHeight = mapWidth;
 map[] tile = {};
 
 class map {
@@ -80,8 +82,8 @@ void createMap() {
   int tileNum = 0;
   
   //For loops to set the grid X, Y position
-  for (int x=0; x < 10; x++) {
-    for (int y=0; y < 10; y++) {
+  for (int x=0; x < mapWidth; x++) {
+    for (int y=0; y < mapHeight; y++) {
       
       //Increase the amount of tiles that have been made
       tileNum++;

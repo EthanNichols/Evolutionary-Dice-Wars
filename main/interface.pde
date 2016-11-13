@@ -54,8 +54,18 @@ void nextTurn() {
         i -= player.length;
       }
       
+      int nextPlayer = i + 1;
+      
+      while (player[nextPlayer].tiles == 0) {
+        nextPlayer++;
+        
+        if (nextPlayer >= player.length) {
+          nextPlayer -= player.length;
+        }
+      }
+      
       //Set the next player's turn to be true
-      player[i + 1].playerTurn = true;
+      player[nextPlayer].playerTurn = true;
       break;
     }
   }
