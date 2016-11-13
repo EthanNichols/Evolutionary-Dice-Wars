@@ -11,6 +11,10 @@ int finishing;
 
 boolean animatedAttack;
 
+int mainMenuDelay = 10;
+int die1 = 0;
+int die2 = 0;
+
 PImage hugeD4;
 PImage hugeD6;
 PImage hugeD8;
@@ -29,8 +33,11 @@ void loadAnimationImages() {
 
 void drawMenuAnimation() {
   
-  int die1 = floor(random(6));
-  int die2 = floor(random(6));
+  if (mainMenuDelay <= 0) {
+    die1 = floor(random(6));
+    die2 = floor(random(6));
+    mainMenuDelay = 10;
+  }
   
   PImage dieImg1 = hugeD4;
   PImage dieImg2 = hugeD4;
@@ -52,6 +59,8 @@ void drawMenuAnimation() {
     case 4: dieImg2 = hugeD12; break;
     case 5: dieImg2 = hugeD20; break;
   }
+  
+  mainMenuDelay--;
   
   image(dieImg1, width / 4 - hugeD6.width / 2, height / 2 - hugeD6.height / 2);
   image(dieImg2, (width / 4) * 3 - hugeD6.width / 2, height / 2 - hugeD6.height / 2);
