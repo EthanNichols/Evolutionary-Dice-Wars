@@ -14,10 +14,10 @@ void testWinner() {
 void startGame() {
   //Create the map that will be played on
   //Create the players that will be playing
-  createMap(optButton[2].value);
-  createPlayers(optButton[0].value, optButton[1].value);
+  createMap(optButton[1].value);
+  createPlayers(optButton[0].value);
   
-  tilesToWin = ceil(((mapWidth * mapHeight) / 4) * (optButton[3].value + 1));
+  tilesToWin = ceil(((mapWidth * mapHeight) / 4) * (optButton[2].value + 1));
 }
 
 void gamestateDraw() {
@@ -44,6 +44,10 @@ void gamestateDraw() {
     
   } else if (gamestate == "endGame") {
     drawWinScreen();
+  } else if (gamestate == "tutorial") {
+    drawTutorial();
+    tutorialMouse();
+    
   } else if (gamestate == "exit") {
     exit();
   }
@@ -63,5 +67,7 @@ void gamestateMouse() {
     mainMouseClick();
   } else if (gamestate == "options") {
     optionsClick();
+  } else if (gamestate == "tutorial") {
+    tutorialClick();
   }
 }

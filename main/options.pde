@@ -24,7 +24,7 @@ class optionButtons {
     hoverPos = false;
     hover = false;
     
-    if (buttonName == "Players" || buttonName == "Computers") {
+    if (buttonName == "Players") {
       value = 1;
     } else if (buttonName == "Map Size") {
       value = 3;
@@ -113,12 +113,11 @@ class optionButtons {
 }
 
 void createOptButtons() {
-  optButton = (optionButtons[])append(optButton, new optionButtons("Players", width / 2, height / 7, 350, 150, "none"));
-  optButton = (optionButtons[])append(optButton, new optionButtons("Computers", width / 2, (height / 7) * 2, 350, 150, "none"));
-  optButton = (optionButtons[])append(optButton, new optionButtons("Map Size", width / 2, (height / 7) * 3, 350, 150, "none"));
-  optButton = (optionButtons[])append(optButton, new optionButtons("Win Condition", width / 2, (height / 7) * 4, 350, 150, "none"));
-  optButton = (optionButtons[])append(optButton, new optionButtons("Game Mode", width / 2, (height / 7) * 5, 350, 150, "none"));
-  optButton = (optionButtons[])append(optButton, new optionButtons("Main Menu", width / 2, (height / 7) * 6, 350, 150, "mainMenu"));
+  optButton = (optionButtons[])append(optButton, new optionButtons("Players", width / 2, height / 6, 350, 150, "none"));
+  optButton = (optionButtons[])append(optButton, new optionButtons("Map Size", width / 2, (height / 6) * 2, 350, 150, "none"));
+  optButton = (optionButtons[])append(optButton, new optionButtons("Win Condition", width / 2, (height / 6) * 3, 350, 150, "none"));
+  optButton = (optionButtons[])append(optButton, new optionButtons("Game Mode", width / 2, (height / 6) * 4, 350, 150, "none"));
+  optButton = (optionButtons[])append(optButton, new optionButtons("Main Menu", width / 2, (height / 6) * 5, 350, 150, "mainMenu"));
 }
 
 void optionsMouse() {
@@ -187,8 +186,8 @@ void optionsClick() {
       optButton[b].value++;
       
       if (optButton[b].buttonText != "Map Size") {
-        if (optButton[b].value >= 4) {
-          optButton[b].value = 4;
+        if (optButton[b].value >= 8) {
+          optButton[b].value = 8;
         }
       } else {
         if (optButton[b].value >= 20) {

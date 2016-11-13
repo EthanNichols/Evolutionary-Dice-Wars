@@ -24,7 +24,7 @@ class players {
     //Set the player id
     //Set the starting position to a random place on the map
     id = player.length + 1;
-    startID = (int)random(tile.length - 1);
+    startID = (int)random(tile.length);
     rank = 0;
     
     //Set the player's turn to false
@@ -63,9 +63,9 @@ class players {
   }
 }
 
-void createPlayers(int players, int computers) {
+void createPlayers(int players) {
   
-  int playerAmount = players + computers;
+  int playerAmount = players;
   //Test if there will be more players playing than before
   if (playerAmount > player.length) {
     
@@ -86,7 +86,7 @@ void createPlayers(int players, int computers) {
   //Place where the players are going to start
   //Set which player will start the game
   
-  if (optButton[4].value == 0) {
+  if (optButton[3].value == 0) {
     placePlayersOnce();
   } else {
     fillTheMap();
@@ -102,7 +102,7 @@ void placePlayersOnce() {
     for (int t=0; t<tile.length; t++) {
       
       //Test if the player starting place is equal to the player ID 
-      if (player[p].startID == tile[t].id) {
+      if (player[p].startID + 1 == tile[t].id) {
         
         int tileID = t;
         
@@ -110,10 +110,14 @@ void placePlayersOnce() {
           
           tileID++;
           
+          print(tileID);
+          
           if (tileID >= tile.length) {
             tileID -= tile.length;
           }
         }
+        
+        println(p + "   " + tile[tileID].occupied);
         
         //Set the tile to be occupied by the player
         //Set that the tile is occupied
@@ -169,6 +173,7 @@ void fillTheMap() {
           createDie(x, y, diceValue, player[p].id, tile[nextTile].id);
           
           tilesToFill--;
+          player[p].tiles++;
           break;
         }
       }

@@ -83,7 +83,7 @@ void setAttackVariables(int player1, int player2, int die1, int die2, int dieRol
   starting = start;
   finishing = finish;
   
-  animationTimer = 30;
+  animationTimer = 10;
   animatedAttack = true;
 }
 

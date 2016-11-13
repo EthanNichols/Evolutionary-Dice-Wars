@@ -37,9 +37,10 @@ class menuButtons {
 }
 
 void createButtons() {
-  button = (menuButtons[])append(button, new menuButtons("Play Game!", width / 2, height / 4, 350, 150, "game"));
-  button = (menuButtons[])append(button, new menuButtons("Options", width / 2, (height / 4) * 2, 350, 150, "options"));
-  button = (menuButtons[])append(button, new menuButtons("Exit", width / 2, (height / 4) * 3, 350, 150, "exit"));
+  button = (menuButtons[])append(button, new menuButtons("Play Game!", width / 2, height / 5, 350, 150, "game"));
+  button = (menuButtons[])append(button, new menuButtons("Options", width / 2, (height / 5) * 2, 350, 150, "options"));
+  button = (menuButtons[])append(button, new menuButtons("Tutorial", width / 2, (height / 5) * 3, 350, 150, "tutorial"));
+  button = (menuButtons[])append(button, new menuButtons("Exit", width / 2, (height / 5) * 4, 350, 150, "exit"));
 }
 
 void mainMenuMouse() {
