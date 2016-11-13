@@ -63,8 +63,9 @@ class players {
   }
 }
 
-void createPlayers(int playerAmount) {
+void createPlayers(int players, int computers) {
   
+  int playerAmount = players + computers;
   //Test if there will be more players playing than before
   if (playerAmount > player.length) {
     

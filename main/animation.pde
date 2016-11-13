@@ -59,11 +59,11 @@ void drawMenuAnimation() {
 
 void drawAttack() {
   
-  if (animationTimer > 0 && animatedAttack) {
+  if (animationTimer >= 0 && animatedAttack) {
     attackAnimation(playerDice1, playerDice2, sidesOnDie1, sidesOnDie2, dieRolled1, dieRolled2, starting, finishing);
   
     animationTimer--;
-  } else if (animationTimer <= 0 && animatedAttack) {
+  } else if (animationTimer < 0 && animatedAttack) {
     delay(1000);
     animatedAttack = false;
     
@@ -142,10 +142,10 @@ void attackAnimation(int player1, int player2, int die1, int die2, int dieRoll1,
   if (animationTimer <= 0) {
     
     tint(dieColor1);
-    image(dieImg1, width / 3 - hugeD6.width / 2, height / 2 - hugeD6.height / 2);
+    image(dieImg1, width / 3 - dieImg1.width / 2, height / 2 - dieImg1.height / 2);
     
     tint(dieColor2);
-    image(dieImg2, (width / 3) * 2 - hugeD6.width / 2, height / 2 - hugeD6.height / 2);
+    image(dieImg2, (width / 3) * 2 - dieImg2.width / 2, height / 2 - dieImg2.height / 2);
     
     fill(0);
     textSize(100);
