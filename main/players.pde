@@ -8,6 +8,7 @@ class players {
   int id;
   int startID;
   boolean playerTurn;
+  int rank;
   
   //The position of the player information on the interface
   int posX;
@@ -24,6 +25,7 @@ class players {
     //Set the starting position to a random place on the map
     id = player.length + 1;
     startID = (int)random(tile.length - 1);
+    rank = 0;
     
     //Set the player's turn to false
     playerTurn = false;
@@ -53,7 +55,7 @@ class players {
     //Set the font size
     //Center the text
     fill(0);
-    textSize(20);
+    textSize(50);
     textAlign(CENTER, CENTER);
     
     //Print how many territories the player owns
@@ -96,20 +98,32 @@ void placePlayers() {
       //Test if the player starting place is equal to the player ID 
       if (player[p].startID == tile[t].id) {
         
+        int tileID = t;
+        
+        while (tile[tileID].occupied) {
+          
+          tileID++;
+          
+          if (tileID >= tile.length) {
+            tileID -= tile.length;
+          }
+        }
+        
         //Set the tile to be occupied by the player
         //Set that the tile is occupied
         //Set the color of the tile to the player color
-        tile[t].player = player[p].id;
-        tile[t].occupied = true;
-        tile[t].playerColor = player[p].playerColor;
+        tile[tileID].player = player[p].id;
+        tile[tileID].occupied = true;
+        tile[tileID].playerColor = player[p].playerColor;
         
         //Local X and Y variables for the center of the tile
-        int x = tile[t].posX + tile[t].posXOffset + tile[t].tileImage.width / 2;
-        int y = tile[t].posY  + tile[t].posYOffset + tile[t].tileImage.height / 2;
+        int x = tile[tileID].posX + tile[tileID].posXOffset + tile[tileID].tileImage.width / 2;
+        int y = tile[tileID].posY  + tile[tileID].posYOffset + tile[tileID].tileImage.height / 2;
         
         //Create a dice at that location and with the player's color
         //Increase the amount of tiles that the player owns
-        createDie(x, y, 4, player[p].id, tile[t].id);
+        createDie(x, y, 4, player[p].id, tile[tileID].id);
+        
         player[p].tiles++;
       }
     }
@@ -138,6 +152,22 @@ void updateTileAmount() {
       if (tile[t].player == player[p].id) {
         player[p].tiles++;
       }
+    }
+  }
+}
+
+void playerLost() {
+  
+  int playersLeft = player.length;
+  
+  for (int p=0; p<player.length; p++) {
+    if (player[p].tiles == 0) {
+      playersLeft--;
+    }
+  }
+  for (int p=0; p<player.length; p++) {
+    if (player[p].tiles == 0 && player[p].rank != 0) {
+      player[p].rank = playersLeft;
     }
   }
 }
