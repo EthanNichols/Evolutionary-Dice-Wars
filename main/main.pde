@@ -8,6 +8,7 @@ void setup() {
   
   //Load all of the dice images
   loadDiceImages();
+  loadAnimationImages();
   
   createButtons();
   createOptButtons();

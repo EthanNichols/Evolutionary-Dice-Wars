@@ -220,8 +220,8 @@ void diceAttack(int startPos, int endPos) {
               tile[t].occupied = false;
             }
           }
-        
-          moveDice(startPos, endPos);
+         
+          setAttackVariables(playerTile1, playerTile2, die1, die2, dieRoll1, dieRoll2, startPos, endPos);
           break;
         }
       } else {
@@ -234,6 +234,8 @@ void diceAttack(int startPos, int endPos) {
           for (int t=0; t<tile.length; t++) {
             if (tile[t].id == startPos) {
               tile[t].occupied = false;
+              
+              setAttackVariables(playerTile1, playerTile2, die1, die2, dieRoll1, dieRoll2, startPos, endPos);
               break;
             }
           }

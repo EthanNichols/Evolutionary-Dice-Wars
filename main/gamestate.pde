@@ -24,6 +24,7 @@ void gamestateDraw() {
   if (gamestate == "mainMenu") {
     mainMenuMouse();
     drawMainMenu();
+    drawMenuAnimation();
   
   } else if (gamestate == "options") {
     drawOptions();
@@ -39,6 +40,7 @@ void gamestateDraw() {
     //Draw the player information on the interface
     drawInterface();
     drawPlayers();
+    drawAttack();
     
   } else if (gamestate == "endGame") {
     drawWinScreen();
