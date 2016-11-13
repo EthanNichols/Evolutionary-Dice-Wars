@@ -72,6 +72,15 @@ void mainMouseClick() {
 }
 
 void drawMainMenu() {
+  
+  fill(0);
+  textSize(100);
+  textAlign(CENTER, CENTER);
+  text("Evolutionary Dice Wars", width / 2, 100);
+  
+  textSize(50);
+  text("Created by: Ethan Nichols", width / 2, height - 100);
+  
   for (int b=0; b<button.length; b++) {
     button[b].display();
   }

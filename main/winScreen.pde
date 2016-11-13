@@ -39,9 +39,16 @@ void drawWinScreen() {
     
     if (player[p].rank == 1) {
       fill(player[p].playerColor);
-      textSize(50);
+      textSize(100);
       textAlign(CENTER, CENTER);
-      text("Player: " + player[p].id + " won!", width / 2, height / 2);
+      text("Congratulations Player " + player[p].id + " you won!", width / 2, height / 2);
+      
+      textSize(50);
+      fill(0);
+      text("Created for RIT Imagine Cup 2016", width / 2, (height / 15) * 11);
+      text("Developed in under 36 hours", width / 2, (height / 15) * 12);
+      text("Programmer and Artist", width / 2, (height / 15) * 13);
+      text("Ethan Nichols", width / 2, (height / 15) * 14);
     }
   }
 }

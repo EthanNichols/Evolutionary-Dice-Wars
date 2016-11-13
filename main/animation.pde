@@ -53,8 +53,8 @@ void drawMenuAnimation() {
     case 5: dieImg2 = hugeD20; break;
   }
   
-  image(dieImg1, width / 3 - hugeD6.width / 2, height / 2 - hugeD6.height / 2);
-  image(dieImg2, (width / 3) * 2 - hugeD6.width / 2, height / 2 - hugeD6.height / 2);
+  image(dieImg1, width / 4 - hugeD6.width / 2, height / 2 - hugeD6.height / 2);
+  image(dieImg2, (width / 4) * 3 - hugeD6.width / 2, height / 2 - hugeD6.height / 2);
 }
 
 void drawAttack() {
