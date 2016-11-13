@@ -1,6 +1,6 @@
 
 int tilesToWin;
-String gamestate = "game";
+String gamestate = "mainMenu";
 
 void gamestateLoad() {
   tilesToWin = (mapWidth * mapHeight) / 2;
@@ -17,7 +17,8 @@ void testWinner() {
 
 void gamestateDraw() {
   if (gamestate == "mainMenu") {
-    mainMenuDraw();
+    mainMenuMouse();
+    drawMainMenu();
     
   } else if (gamestate == "game") {
     //Draw the map
@@ -45,5 +46,7 @@ void gamestateMouse() {
     if (mouseButton == RIGHT) {
       nextTurn();
     }
+  } else if (gamestate == "mainMenu") {
+    mainMouseClick();
   }
 }

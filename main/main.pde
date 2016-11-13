@@ -13,6 +13,7 @@ void setup() {
   
   //Create the map that will be played on
   //Create the players that will be playing
+  createButtons();
   createMap();
   createPlayers(2);
 }
@@ -20,7 +21,6 @@ void setup() {
 void draw() {
   //Draw the background to reset the image shown
   background(0, 0, 100);
-  
   
   gamestateDraw();
 }
