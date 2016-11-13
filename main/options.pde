@@ -51,10 +51,49 @@ class optionButtons {
     text(buttonText, posX + rectWidth / 2, posY + rectHeight / 2);
     
     if (buttonText != "Main Menu") {
-      fill(0);
-      textSize(50);
-      textAlign(CENTER, CENTER);
-      text(value, posX + rectWidth / 2, posY + floor(rectHeight * 1.2)); 
+      
+      if (buttonText != "Win Condition" &&
+      buttonText != "Game Mode") {
+        
+        fill(0);
+        textSize(50);
+        textAlign(CENTER, CENTER);
+        text(value, posX + rectWidth / 2, posY + floor(rectHeight * 1.2)); 
+        
+      } else if (buttonText == "Win Condition") {
+        fill(0);
+        textSize(50);
+        textAlign(CENTER, CENTER);
+        
+        String percentage = "0%";
+        
+        if (value >= 3) {
+          value = 3;
+        }
+        
+        switch(value) {
+          case 0: percentage = "25%"; break;
+          case 1: percentage = "50%"; break;
+          case 2: percentage = "75%"; break;
+          case 3: percentage = "100%"; break;
+        }
+        text(percentage + " of the map", posX + rectWidth / 2, posY + floor(rectHeight * 1.2)); 
+      } else if (buttonText == "Game Mode") {
+        
+        String mode = "";
+        
+        if (value >= 1) {
+          value = 1;
+        }
+        
+        switch(value) {
+          case 0: mode = "One Tile Mode"; break;
+          case 1: mode = "Full Map Mode"; break;
+        }
+        
+        text(mode, posX + rectWidth / 2, posY + floor(rectHeight * 1.2)); 
+      }
+        
     
       if (hoverNeg) {
         fill(75, 255, 150);
@@ -130,8 +169,14 @@ void optionsClick() {
     mouseY < optButton[b].posY + optButton[b].rectHeight - optButton[b].rectHeight / 8) {
       optButton[b].value--;
       
-      if (optButton[b].value <= 0) {
-        optButton[b].value = 0;
+      if (optButton[b].buttonText != "Map Size") {
+        if (optButton[b].value <= 0) {
+          optButton[b].value = 0;
+        }
+      } else {
+        if (optButton[b].value <= 3) {
+          optButton[b].value = 3;
+        }
       }
     }
     
@@ -141,8 +186,14 @@ void optionsClick() {
     mouseY < optButton[b].posY + optButton[b].rectHeight - optButton[b].rectHeight / 8) {
       optButton[b].value++;
       
-      if (optButton[b].value >= 4) {
-        optButton[b].value = 4;
+      if (optButton[b].buttonText != "Map Size") {
+        if (optButton[b].value >= 4) {
+          optButton[b].value = 4;
+        }
+      } else {
+        if (optButton[b].value >= 20) {
+          optButton[b].value = 20;
+        }
       }
     }
   }

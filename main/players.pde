@@ -84,11 +84,16 @@ void createPlayers(int playerAmount) {
   
   //Place where the players are going to start
   //Set which player will start the game
-  placePlayers();
+  
+  if (optButton[4].value == 0) {
+    placePlayersOnce();
+  } else {
+    fillTheMap();
+  }
   randomPlayerTurn();
 }
 
-void placePlayers() {
+void placePlayersOnce() {
   
   //Get information about the players
   //Get information about the tiles
@@ -125,6 +130,46 @@ void placePlayers() {
         createDie(x, y, 4, player[p].id, tile[tileID].id);
         
         player[p].tiles++;
+      }
+    }
+  }
+}
+
+void fillTheMap() {
+  
+  int tilesToFill = tile.length;
+  
+  while (tilesToFill - player.length > 0) {
+    for (int p=0; p<player.length; p++) {
+      
+      int randomID = floor(random(tile.length));
+      
+      for (int t=0; t<tile.length; t++) {
+        if (tile[t].id == randomID) {
+          
+          int nextTile = t;
+          while (tile[nextTile].occupied) {
+            nextTile++;
+            
+            if (nextTile >= tile.length) {
+              nextTile -= tile.length;
+            }
+          }
+          
+          tile[nextTile].player = player[p].id;
+          tile[nextTile].occupied = true;
+          tile[nextTile].playerColor = player[p].playerColor;
+          
+          int x = tile[nextTile].posX + tile[nextTile].posXOffset + tile[nextTile].tileImage.width / 2;
+          int y = tile[nextTile].posY  + tile[nextTile].posYOffset + tile[nextTile].tileImage.height / 2;
+          
+          int diceValue = floor(random(5)) * 2 + 4;
+        
+          createDie(x, y, diceValue, player[p].id, tile[nextTile].id);
+          
+          tilesToFill--;
+          break;
+        }
       }
     }
   }

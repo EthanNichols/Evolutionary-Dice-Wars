@@ -9,8 +9,6 @@ void setup() {
   //Load all of the dice images
   loadDiceImages();
   
-  gamestateLoad();
-  
   createButtons();
   createOptButtons();
 }

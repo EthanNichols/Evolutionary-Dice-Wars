@@ -2,10 +2,6 @@
 int tilesToWin;
 String gamestate = "mainMenu";
 
-void gamestateLoad() {
-  tilesToWin = (mapWidth * mapHeight) / 2;
-}
-
 void testWinner() {
   for (int p=0; p<player.length; p++) {
     if (player[p].tiles > tilesToWin) {
@@ -19,7 +15,9 @@ void startGame() {
   //Create the map that will be played on
   //Create the players that will be playing
   createMap(optButton[2].value);
-  createPlayers(optButton[0].value + optButton[2].value);
+  createPlayers(optButton[0].value + optButton[1].value);
+  
+  tilesToWin = ceil(((mapWidth * mapHeight) / 4) * (optButton[3].value + 1));
 }
 
 void gamestateDraw() {
