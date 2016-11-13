@@ -11,11 +11,8 @@ void setup() {
   
   gamestateLoad();
   
-  //Create the map that will be played on
-  //Create the players that will be playing
   createButtons();
-  createMap();
-  createPlayers(2);
+  createOptButtons();
 }
 
 void draw() {

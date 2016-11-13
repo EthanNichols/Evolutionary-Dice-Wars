@@ -15,10 +15,21 @@ void testWinner() {
   }
 }
 
+void startGame() {
+  //Create the map that will be played on
+  //Create the players that will be playing
+  createMap(optButton[2].value);
+  createPlayers(optButton[0].value + optButton[2].value);
+}
+
 void gamestateDraw() {
   if (gamestate == "mainMenu") {
     mainMenuMouse();
     drawMainMenu();
+  
+  } else if (gamestate == "options") {
+    drawOptions();
+    optionsMouse();
     
   } else if (gamestate == "game") {
     //Draw the map
@@ -33,6 +44,8 @@ void gamestateDraw() {
     
   } else if (gamestate == "endGame") {
     drawWinScreen();
+  } else if (gamestate == "exit") {
+    exit();
   }
 }
 
@@ -48,5 +61,7 @@ void gamestateMouse() {
     }
   } else if (gamestate == "mainMenu") {
     mainMouseClick();
+  } else if (gamestate == "options") {
+    optionsClick();
   }
 }

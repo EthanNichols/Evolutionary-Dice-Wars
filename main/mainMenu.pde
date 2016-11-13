@@ -62,6 +62,10 @@ void mainMouseClick() {
     mouseY > button[b].posY &&
     mouseY < button[b].posY + button[b].rectHeight) {
       gamestate = button[b].gamestate;
+      
+      if (gamestate == "game") {
+        startGame();
+      }
     }
   }
 }

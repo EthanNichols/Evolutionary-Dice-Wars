@@ -1,6 +1,7 @@
 
 int mapWidth = 5;
 int mapHeight = mapWidth;
+
 map[] tile = {};
 
 class map {
@@ -76,7 +77,10 @@ class map {
   }
 }
 
-void createMap() {
+void createMap(int size) {
+  
+  mapWidth = size;
+  mapHeight = size;
   
   //Local variable to know how many dice have been created
   int tileNum = 0;
