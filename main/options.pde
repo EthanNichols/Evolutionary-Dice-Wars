@@ -46,7 +46,7 @@ class optionButtons {
     rect(posX, posY, rectWidth, rectHeight);
     
     fill(0);
-    textSize(50);
+    textSize(25);
     textAlign(CENTER, CENTER);
     text(buttonText, posX + rectWidth / 2, posY + rectHeight / 2);
     
@@ -56,13 +56,13 @@ class optionButtons {
       buttonText != "Game Mode") {
         
         fill(0);
-        textSize(50);
+        textSize(25);
         textAlign(CENTER, CENTER);
-        text(value, posX + rectWidth / 2, posY + floor(rectHeight * 1.2)); 
+        text(value, posX + rectWidth / 2, posY + floor(rectHeight * 1.4)); 
         
       } else if (buttonText == "Win Condition") {
         fill(0);
-        textSize(50);
+        textSize(25);
         textAlign(CENTER, CENTER);
         
         String percentage = "0%";
@@ -77,7 +77,7 @@ class optionButtons {
           case 2: percentage = "75%"; break;
           case 3: percentage = "100%"; break;
         }
-        text(percentage + " of the map", posX + rectWidth / 2, posY + floor(rectHeight * 1.2)); 
+        text(percentage + " of the map", posX + rectWidth / 2, posY + floor(rectHeight * 1.4)); 
       } else if (buttonText == "Game Mode") {
         
         String mode = "";
@@ -91,7 +91,7 @@ class optionButtons {
           case 1: mode = "Full Map Mode"; break;
         }
         
-        text(mode, posX + rectWidth / 2, posY + floor(rectHeight * 1.2)); 
+        text(mode, posX + rectWidth / 2, posY + floor(rectHeight * 1.4)); 
       }
         
     
@@ -113,11 +113,11 @@ class optionButtons {
 }
 
 void createOptButtons() {
-  optButton = (optionButtons[])append(optButton, new optionButtons("Players", width / 2, height / 6, 350, 150, "none"));
-  optButton = (optionButtons[])append(optButton, new optionButtons("Map Size", width / 2, (height / 6) * 2, 350, 150, "none"));
-  optButton = (optionButtons[])append(optButton, new optionButtons("Win Condition", width / 2, (height / 6) * 3, 350, 150, "none"));
-  optButton = (optionButtons[])append(optButton, new optionButtons("Game Mode", width / 2, (height / 6) * 4, 350, 150, "none"));
-  optButton = (optionButtons[])append(optButton, new optionButtons("Main Menu", width / 2, (height / 6) * 5, 350, 150, "mainMenu"));
+  optButton = (optionButtons[])append(optButton, new optionButtons("Players", width / 2, height / 6, 250, 50, "none"));
+  optButton = (optionButtons[])append(optButton, new optionButtons("Map Size", width / 2, (height / 6) * 2, 250, 50, "none"));
+  optButton = (optionButtons[])append(optButton, new optionButtons("Win Condition", width / 2, (height / 6) * 3, 250, 50, "none"));
+  optButton = (optionButtons[])append(optButton, new optionButtons("Game Mode", width / 2, (height / 6) * 4, 250, 50, "none"));
+  optButton = (optionButtons[])append(optButton, new optionButtons("Main Menu", width / 2, (height / 6) * 5, 250, 50, "mainMenu"));
 }
 
 void optionsMouse() {

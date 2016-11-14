@@ -1,7 +1,7 @@
 
 void setup() {
   //Set the size of the screen
-  fullScreen();
+  size(1280, 800);
   
   //Set the color mode
   colorMode(HSB, 255);

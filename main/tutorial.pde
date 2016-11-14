@@ -15,20 +15,20 @@ void drawTutorial() {
   } else {
     fill(255);
   }
-  rect(50, height - 400, 300, 150);
+  rect(25, height - 200, 200, 50);
   
   fill(0);
-  textSize(50);
+  textSize(25);
   textAlign(CENTER, CENTER);
-  text("Main Menu", 50 + 300 / 2, height - 400 + 150 / 2);
+  text("Main Menu", 25 + 200 / 2, height - 200 + 25);
 }
 
 void tutorialMouse() {
   for (int b=0; b<button.length; b++) {
-    if (mouseX > 50 &&
-    mouseX < 50 + 300 &&
-    mouseY > height - 400 &&
-    mouseY < height - 400 + 150) {
+    if (mouseX > 25 &&
+    mouseX < 25 + 200 &&
+    mouseY > height - 200 &&
+    mouseY < height - 200 + 50) {
       tutorialHover = true;
     } else {
       tutorialHover = false;
@@ -38,10 +38,10 @@ void tutorialMouse() {
 
 void tutorialClick() {
   for (int b=0; b<button.length; b++) {
-    if (mouseX > 50 &&
-    mouseX < 50 + 300 &&
-    mouseY > height - 400 &&
-    mouseY < height - 400 + 150) {
+    if (mouseX > 25 &&
+    mouseX < 25 + 200 &&
+    mouseY > height - 200 &&
+    mouseY < height - 200 + 50) {
       gamestate = "mainMenu";
     }
   }

@@ -55,7 +55,7 @@ class players {
     //Set the font size
     //Center the text
     fill(0);
-    textSize(50);
+    textSize(25);
     textAlign(CENTER, CENTER);
     
     //Print how many territories the player owns

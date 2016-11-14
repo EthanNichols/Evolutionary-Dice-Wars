@@ -17,7 +17,7 @@ void interfaceNextTurn(int infoWidth, int spot) {
   //Set the text size
   //Set the fill color
   //Center the text
-  textSize(50);
+  textSize(25);
   fill(0);
   textAlign(CENTER, CENTER);
   
