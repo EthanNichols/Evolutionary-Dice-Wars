@@ -15,7 +15,7 @@ void startGame() {
   //Create the map that will be played on
   //Create the players that will be playing
   createMap(optButton[1].value);
-  createPlayers(optButton[0].value);
+  createPlayers(2);
   
   tilesToWin = ceil(((mapWidth * mapHeight) / 4) * (optButton[2].value + 1));
 }
