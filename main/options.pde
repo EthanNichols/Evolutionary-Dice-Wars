@@ -190,8 +190,8 @@ void optionsClick() {
           optButton[b].value = 8;
         }
       } else {
-        if (optButton[b].value >= 20) {
-          optButton[b].value = 20;
+        if (optButton[b].value >= 7) {
+          optButton[b].value = 7;
         }
       }
     }

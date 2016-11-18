@@ -35,16 +35,18 @@ void setRanks() {
 
 void drawWinScreen() {
   
+  background(0);
+  
   for (int p=0; p<player.length; p++) {
     
     if (player[p].rank == 1) {
       fill(player[p].playerColor);
-      textSize(100);
+      textSize(50);
       textAlign(CENTER, CENTER);
       text("Congratulations Player " + player[p].id + " you won!", width / 2, height / 2);
       
-      textSize(50);
-      fill(0);
+      textSize(25);
+      fill(255);
       text("Created for RIT Imagine Cup 2016", width / 2, (height / 15) * 11);
       text("Developed in under 36 hours", width / 2, (height / 15) * 12);
       text("Programmer and Artist", width / 2, (height / 15) * 13);

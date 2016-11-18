@@ -588,19 +588,19 @@ public void drawInterface() {
   //Set the color of the interface
   //Define the area of the interface
   fill(255);
-  rect(0, height - 200, width, 200);
+  rect(-1, height - 200, width + 1, 200);
 
 }
 
 public void interfaceNextTurn(int infoWidth, int spot) {
   
   fill(255);
-  rect(spot * infoWidth + 5, height - 175, infoWidth - 5, 150);
+  rect(spot * infoWidth + 5, height - 175, infoWidth - 10, 150);
   
   //Set the text size
   //Set the fill color
   //Center the text
-  textSize(50);
+  textSize(25);
   fill(0);
   textAlign(CENTER, CENTER);
   
@@ -695,17 +695,17 @@ class menuButtons {
     rect(posX, posY, rectWidth, rectHeight);
     
     fill(0);
-    textSize(50);
+    textSize(25);
     textAlign(CENTER, CENTER);
     text(buttonText, posX + rectWidth / 2, posY + rectHeight / 2);
   }
 }
 
 public void createButtons() {
-  button = (menuButtons[])append(button, new menuButtons("Play Game!", width / 2, height / 5, 350, 150, "game"));
-  button = (menuButtons[])append(button, new menuButtons("Options", width / 2, (height / 5) * 2, 350, 150, "options"));
-  button = (menuButtons[])append(button, new menuButtons("Tutorial", width / 2, (height / 5) * 3, 350, 150, "tutorial"));
-  button = (menuButtons[])append(button, new menuButtons("Exit", width / 2, (height / 5) * 4, 350, 150, "exit"));
+  button = (menuButtons[])append(button, new menuButtons("Play Game!", width / 2, height / 5, 250, 50, "game"));
+  button = (menuButtons[])append(button, new menuButtons("Options", width / 2, (height / 5) * 2, 250, 50, "options"));
+  button = (menuButtons[])append(button, new menuButtons("Tutorial", width / 2, (height / 5) * 3, 250, 50, "tutorial"));
+  button = (menuButtons[])append(button, new menuButtons("Exit", width / 2, (height / 5) * 4, 250, 50, "exit"));
 }
 
 public void mainMenuMouse() {
@@ -739,12 +739,12 @@ public void mainMouseClick() {
 public void drawMainMenu() {
   
   fill(0);
-  textSize(100);
-  textAlign(CENTER, CENTER);
-  text("Evolutionary Dice Wars", width / 2, 100);
-  
   textSize(50);
-  text("Created by: Ethan Nichols", width / 2, height - 100);
+  textAlign(CENTER, CENTER);
+  text("Evolutionary Dice Wars", width / 2, height / 15);
+  
+  textSize(25);
+  text("Created by: Ethan Nichols", width / 2, height / 15 * 14);
   
   for (int b=0; b<button.length; b++) {
     button[b].display();
@@ -821,11 +821,8 @@ class map {
       tint(playerColor, 25);
     }
     
-    int x = posX + posXOffset;
-    int y = posY + posYOffset;
-    
     //Draw the tile
-    image(tileImage, x, y);
+    image(tileImage, gridX * (tileImage.width - 1) + (gridY % 2) * 67, gridY * (tileImage.height - 1) - gridY * 33);
   }
 }
 
@@ -906,7 +903,7 @@ class optionButtons {
     rect(posX, posY, rectWidth, rectHeight);
     
     fill(0);
-    textSize(50);
+    textSize(25);
     textAlign(CENTER, CENTER);
     text(buttonText, posX + rectWidth / 2, posY + rectHeight / 2);
     
@@ -916,13 +913,13 @@ class optionButtons {
       buttonText != "Game Mode") {
         
         fill(0);
-        textSize(50);
+        textSize(25);
         textAlign(CENTER, CENTER);
-        text(value, posX + rectWidth / 2, posY + floor(rectHeight * 1.2f)); 
+        text(value, posX + rectWidth / 2, posY + floor(rectHeight * 1.4f)); 
         
       } else if (buttonText == "Win Condition") {
         fill(0);
-        textSize(50);
+        textSize(25);
         textAlign(CENTER, CENTER);
         
         String percentage = "0%";
@@ -937,7 +934,7 @@ class optionButtons {
           case 2: percentage = "75%"; break;
           case 3: percentage = "100%"; break;
         }
-        text(percentage + " of the map", posX + rectWidth / 2, posY + floor(rectHeight * 1.2f)); 
+        text(percentage + " of the map", posX + rectWidth / 2, posY + floor(rectHeight * 1.4f)); 
       } else if (buttonText == "Game Mode") {
         
         String mode = "";
@@ -951,7 +948,7 @@ class optionButtons {
           case 1: mode = "Full Map Mode"; break;
         }
         
-        text(mode, posX + rectWidth / 2, posY + floor(rectHeight * 1.2f)); 
+        text(mode, posX + rectWidth / 2, posY + floor(rectHeight * 1.4f)); 
       }
         
     
@@ -973,11 +970,11 @@ class optionButtons {
 }
 
 public void createOptButtons() {
-  optButton = (optionButtons[])append(optButton, new optionButtons("Players", width / 2, height / 6, 350, 150, "none"));
-  optButton = (optionButtons[])append(optButton, new optionButtons("Map Size", width / 2, (height / 6) * 2, 350, 150, "none"));
-  optButton = (optionButtons[])append(optButton, new optionButtons("Win Condition", width / 2, (height / 6) * 3, 350, 150, "none"));
-  optButton = (optionButtons[])append(optButton, new optionButtons("Game Mode", width / 2, (height / 6) * 4, 350, 150, "none"));
-  optButton = (optionButtons[])append(optButton, new optionButtons("Main Menu", width / 2, (height / 6) * 5, 350, 150, "mainMenu"));
+  optButton = (optionButtons[])append(optButton, new optionButtons("Players", width / 2, height / 6, 250, 50, "none"));
+  optButton = (optionButtons[])append(optButton, new optionButtons("Map Size", width / 2, (height / 6) * 2, 250, 50, "none"));
+  optButton = (optionButtons[])append(optButton, new optionButtons("Win Condition", width / 2, (height / 6) * 3, 250, 50, "none"));
+  optButton = (optionButtons[])append(optButton, new optionButtons("Game Mode", width / 2, (height / 6) * 4, 250, 50, "none"));
+  optButton = (optionButtons[])append(optButton, new optionButtons("Main Menu", width / 2, (height / 6) * 5, 250, 50, "mainMenu"));
 }
 
 public void optionsMouse() {
@@ -1236,6 +1233,9 @@ class players {
   
   
   players(int colorOfPlayer) {
+    
+    println("create player");
+    
     //Set the player id
     //Set the starting position to a random place on the map
     id = player.length + 1;
@@ -1270,7 +1270,7 @@ class players {
     //Set the font size
     //Center the text
     fill(0);
-    textSize(50);
+    textSize(25);
     textAlign(CENTER, CENTER);
     
     //Print how many territories the player owns
@@ -1281,6 +1281,9 @@ class players {
 public void createPlayers(int players) {
   
   int playerAmount = players;
+  
+  print("create " + players + " players");
+  
   //Test if there will be more players playing than before
   if (playerAmount > player.length) {
     
@@ -1292,7 +1295,7 @@ public void createPlayers(int players) {
       
       //Set the color of the player compared to how many players there are
       int playerColor = color((255 / newPlayerAmount) * i, 255, 255);
-      
+   
       //Create a new player
       player = (players[])append(player, new players(playerColor));
     }
@@ -1454,20 +1457,20 @@ public void drawTutorial() {
   } else {
     fill(255);
   }
-  rect(50, height - 400, 300, 150);
+  rect(25, height - 200, 200, 50);
   
   fill(0);
-  textSize(50);
+  textSize(25);
   textAlign(CENTER, CENTER);
-  text("Main Menu", 50 + 300 / 2, height - 400 + 150 / 2);
+  text("Main Menu", 25 + 200 / 2, height - 200 + 25);
 }
 
 public void tutorialMouse() {
   for (int b=0; b<button.length; b++) {
-    if (mouseX > 50 &&
-    mouseX < 50 + 300 &&
-    mouseY > height - 400 &&
-    mouseY < height - 400 + 150) {
+    if (mouseX > 25 &&
+    mouseX < 25 + 200 &&
+    mouseY > height - 200 &&
+    mouseY < height - 200 + 50) {
       tutorialHover = true;
     } else {
       tutorialHover = false;
@@ -1477,10 +1480,10 @@ public void tutorialMouse() {
 
 public void tutorialClick() {
   for (int b=0; b<button.length; b++) {
-    if (mouseX > 50 &&
-    mouseX < 50 + 300 &&
-    mouseY > height - 400 &&
-    mouseY < height - 400 + 150) {
+    if (mouseX > 25 &&
+    mouseX < 25 + 200 &&
+    mouseY > height - 200 &&
+    mouseY < height - 200 + 50) {
       gamestate = "mainMenu";
     }
   }
@@ -1522,16 +1525,18 @@ public void setRanks() {
 
 public void drawWinScreen() {
   
+  background(0);
+  
   for (int p=0; p<player.length; p++) {
     
     if (player[p].rank == 1) {
       fill(player[p].playerColor);
-      textSize(100);
+      textSize(50);
       textAlign(CENTER, CENTER);
       text("Congratulations Player " + player[p].id + " you won!", width / 2, height / 2);
       
-      textSize(50);
-      fill(0);
+      textSize(25);
+      fill(255);
       text("Created for RIT Imagine Cup 2016", width / 2, (height / 15) * 11);
       text("Developed in under 36 hours", width / 2, (height / 15) * 12);
       text("Programmer and Artist", width / 2, (height / 15) * 13);
@@ -1539,7 +1544,7 @@ public void drawWinScreen() {
     }
   }
 }
-  public void settings() {  fullScreen(); }
+  public void settings() {  size(1280, 800); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "main" };
     if (passedArgs != null) {

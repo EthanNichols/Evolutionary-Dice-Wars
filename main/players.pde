@@ -21,6 +21,9 @@ class players {
   
   
   players(color colorOfPlayer) {
+    
+    println("create player");
+    
     //Set the player id
     //Set the starting position to a random place on the map
     id = player.length + 1;
@@ -66,6 +69,9 @@ class players {
 void createPlayers(int players) {
   
   int playerAmount = players;
+  
+  print("create " + players + " players");
+  
   //Test if there will be more players playing than before
   if (playerAmount > player.length) {
     
@@ -77,7 +83,7 @@ void createPlayers(int players) {
       
       //Set the color of the player compared to how many players there are
       color playerColor = color((255 / newPlayerAmount) * i, 255, 255);
-      
+   
       //Create a new player
       player = (players[])append(player, new players(playerColor));
     }

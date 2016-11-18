@@ -30,17 +30,17 @@ class menuButtons {
     rect(posX, posY, rectWidth, rectHeight);
     
     fill(0);
-    textSize(50);
+    textSize(25);
     textAlign(CENTER, CENTER);
     text(buttonText, posX + rectWidth / 2, posY + rectHeight / 2);
   }
 }
 
 void createButtons() {
-  button = (menuButtons[])append(button, new menuButtons("Play Game!", width / 2, height / 5, 350, 150, "game"));
-  button = (menuButtons[])append(button, new menuButtons("Options", width / 2, (height / 5) * 2, 350, 150, "options"));
-  button = (menuButtons[])append(button, new menuButtons("Tutorial", width / 2, (height / 5) * 3, 350, 150, "tutorial"));
-  button = (menuButtons[])append(button, new menuButtons("Exit", width / 2, (height / 5) * 4, 350, 150, "exit"));
+  button = (menuButtons[])append(button, new menuButtons("Play Game!", width / 2, height / 5, 250, 50, "game"));
+  button = (menuButtons[])append(button, new menuButtons("Options", width / 2, (height / 5) * 2, 250, 50, "options"));
+  button = (menuButtons[])append(button, new menuButtons("Tutorial", width / 2, (height / 5) * 3, 250, 50, "tutorial"));
+  button = (menuButtons[])append(button, new menuButtons("Exit", width / 2, (height / 5) * 4, 250, 50, "exit"));
 }
 
 void mainMenuMouse() {
@@ -74,12 +74,12 @@ void mainMouseClick() {
 void drawMainMenu() {
   
   fill(0);
-  textSize(100);
-  textAlign(CENTER, CENTER);
-  text("Evolutionary Dice Wars", width / 2, 100);
-  
   textSize(50);
-  text("Created by: Ethan Nichols", width / 2, height - 100);
+  textAlign(CENTER, CENTER);
+  text("Evolutionary Dice Wars", width / 2, height / 15);
+  
+  textSize(25);
+  text("Created by: Ethan Nichols", width / 2, height / 15 * 14);
   
   for (int b=0; b<button.length; b++) {
     button[b].display();

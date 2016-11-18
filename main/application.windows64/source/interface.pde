@@ -5,19 +5,19 @@ void drawInterface() {
   //Set the color of the interface
   //Define the area of the interface
   fill(255);
-  rect(0, height - 200, width, 200);
+  rect(-1, height - 200, width + 1, 200);
 
 }
 
 void interfaceNextTurn(int infoWidth, int spot) {
   
   fill(255);
-  rect(spot * infoWidth + 5, height - 175, infoWidth - 5, 150);
+  rect(spot * infoWidth + 5, height - 175, infoWidth - 10, 150);
   
   //Set the text size
   //Set the fill color
   //Center the text
-  textSize(50);
+  textSize(25);
   fill(0);
   textAlign(CENTER, CENTER);
   
