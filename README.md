@@ -9,4 +9,4 @@ Please don't hesitate if you would like to write this in another language, since
 
 The only thing I would like to ask if you use this code, or idea is that you give credit to the Game Dev.
 
-Ethan Nichols (Lead Programmer and Artist)
+Ethan Nichols (Lead Programmer / Artist)
